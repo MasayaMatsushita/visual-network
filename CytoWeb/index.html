@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cytoscape example</title>
+
+    <link rel="stylesheet" type="text/css" href="./css/cytoscape.js-panzoom-2.5.3.css">
+    <link rel="stylesheet" type="text/css" href="./css/all.min-5.9.0.css">
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+
+    <script src="./js/jquery.min-3.4.1.js"></script>
+    <script src="./js/cytoscape.min-3.8.1.js"></script>
+    <script src="./js/numeric-1.2.6.js"></script>
+    <script src="./js/layout-base-1.0.1.js"></script>
+    <script src="./js/core-base-1.0.0.js"></script>
+
+<!--cytoscape-fcose:Dependencies
+    Cytoscape.js ^3.2.0
+    numeric.js ^1.2.6
+    cose-base ^1.0.0
+-->
+    <script src="./js/cytoscape-fcose-1.0.0.js"></script>
+
+<!-- cytoscape-panzoom:Dependencies
+    jQuery ^1.4 || ^2.0 || ^3.0
+    Cytoscape.js ^2.0.0 || ^3.0.0
+    Font Awesome 4 (for automatic icons), or you can specify your own class names for icons
+-->
+    <script src="./js/cytoscape-panzoom-2.5.3.js"></script>
+
+    <script src="./js/script.js"></script>
+</head>
+
+<body>
+<h1>ネットワーク可視化</h1>
+<table border="1">
+    <tr>
+        <td>
+            <label for="IdLayout">Layout:</label>
+            <select name="NmLayout" id="IdLayout">
+                <option value="fcose">fcose</option>
+                <option value="grid" selected>grid</option>
+                <option value="random">random</option>
+                <option value="circle">circle</option>
+                <option value="concentric">concentric</option>
+                <option value="breadthfirst">breadthfirst</option>
+                <option value="cose">cose</option>
+            </select>
+        </td>
+        <td>
+            <button id="IdBtnRead">読込</button>
+            <textarea name="NmElements" id="IdElements" cols="30" rows="5">
+                [
+                    { group: 'nodes', data: { id: '今日は', isSubject:true} },
+                    { group: 'nodes', data: { id: '7月27日', isSubject:false} },
+                    { group: 'nodes', data: { id: 'です', isSubject:false} },
+                    { group: 'edges', data: { id: '目的語', source: '今日は', target: '7月27日' } },
+                    { group: 'edges', data: { id: '動詞', source: '7月27日', target: 'です' } },
+                ]
+            </textarea>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="3">
+            <div id="IdCytoscape"></div>
+        </td>
+    </tr>
+</table>
+
+</body>
+
+</html>
