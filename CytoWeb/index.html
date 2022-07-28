@@ -41,10 +41,10 @@
             <label for="IdLayout">Layout:</label>
             <select name="NmLayout" id="IdLayout">
                 <option value="fcose">fcose</option>
-                <option value="grid" selected>grid</option>
+                <option value="grid">grid</option>
                 <option value="random">random</option>
                 <option value="circle">circle</option>
-                <option value="concentric">concentric</option>
+                <option value="concentric" selected>concentric</option>
                 <option value="breadthfirst">breadthfirst</option>
                 <option value="cose">cose</option>
             </select>
@@ -53,11 +53,14 @@
             <button id="IdBtnRead">読込</button>
             <textarea name="NmElements" id="IdElements" cols="30" rows="5">
                 [
-                    { group: 'nodes', data: { id: '今日は', isSubject:true} },
-                    { group: 'nodes', data: { id: '7月27日', isSubject:false} },
-                    { group: 'nodes', data: { id: 'です', isSubject:false} },
-                    { group: 'edges', data: { id: '目的語', source: '今日は', target: '7月27日' } },
-                    { group: 'edges', data: { id: '動詞', source: '7月27日', target: 'です' } },
+                    { group: 'nodes', data: { id: 'n1', name: '人1', group: 1} },
+                    { group: 'nodes', data: { id: 'n2', name: '企業1', group: 2} },
+                    { group: 'nodes', data: { id: 'n3', name: '人2', group: 1} },
+                    { group: 'nodes', data: { id: 'n4', name: '企業2', group: 2} },
+                    { group: 'edges', data: { id: 'e1', name: '', source: 'n1', target: 'n2', weight: 2} },
+                    { group: 'edges', data: { id: 'e2', name: '', source: 'n2', target: 'n3', weight: 4} },
+                    { group: 'edges', data: { id: 'e3', name: '', source: 'n1', target: 'n4', weight: 2} },
+                    { group: 'edges', data: { id: 'e4', name: '', source: 'n3', target: 'n4', weight: 2} },
                 ]
             </textarea>
         </td>

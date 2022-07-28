@@ -17,38 +17,31 @@ var CytLayout = (function () {
       // ノードのスタイル
       nodes.forEach(function (node) {
         var data = node.json().data;
-          // ノードのサイズとスタイル
-          /*
-                      // ノードのサイズをランダムで求めていますが、普通はノードの属性から値を取ると思います。
-                      var width = [30, 70, 110];
-                      var size = width[Math.floor(Math.random() * 3)];
-                      node.css("width", size);
-                      node.css("height", size);
-          */
           // ラベルの幅と高さのサイズにします。
           node.css("width", "label");
           node.css("height", "label");
           node.css("padding", "10px");
-          node.css("content", data.name || data.id);
-          node.css("text-justification", "left")
+          node.css("content", data.name);
+          node.css("text-justification", "left");
           node.css("text-valign", "center");
           node.css("text-halign", "center");
           node.css("text-wrap", "wrap");
-          if(data.isSubject){
+          if(data.group == 1){
             //主語の場合のノード描画
             node.css("shape", "ellipse");
-            node.css("background-color", "#f582ae");
-          }else{
+            node.css("background-color", "#ffd803");
+          }else if(data.group == 2){
             //主語以外のノード描画
             node.css("shape", "round-rectangle");
-            node.css("background-color", "#8bd3dd");
+            node.css("background-color", "#e3f6f5");
           }
       });
       // エッヂのスタイル
       edges.forEach(function (edge) {
         var data = edge.json().data;
-        edge.css("content", data.id);
-        edge.css("curve-style", "taxi");
+        edge.css("content", data.name);
+        edge.css("curve-style", "haystack");
+        edge.css("width", data.weight);
         // edge.css("target-arrow-shape", "triangle");
       });
     };
@@ -72,23 +65,6 @@ var CytLayout = (function () {
       m += "{id:" + id + ", x:" + tgt.position("x") + ", y:" + tgt.position("y") + "}";
       alert(m);
     });
-    // // cy要素自体でイベントを拾う
-    // cy.on("tap", function (evt) {
-    //   var tgt = evt.target;
-    //   if (tgt === cy) {
-    //     // cyをtapした場合は、ノードを追加
-    //     cy.add({
-    //       data: { id: 'new' + Math.round(Math.random() * 100) },
-    //       position: {
-    //         x: evt.position.x,
-    //         y: evt.position.y
-    //       }
-    //     });
-    //   } else {
-    //   }
-    //   setStyles(cy.nodes(), cy.edges());
-    //   CytLayout.setLeyout(cy, $("#IdLayout").val());
-    // });
     $("#IdLayout").change(function () {
       CytLayout.setLeyout(cy, $("#IdLayout").val());
     });
