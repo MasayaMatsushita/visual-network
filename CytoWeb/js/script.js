@@ -40,11 +40,9 @@ var CytLayout = (function () {
       edges.forEach(function (edge) {
         var data = edge.json().data;
         edge.css("content", data.name);
-        edge.css("curve-style", "straight");
+        edge.css("curve-style", "haystack");
         edge.css("width", data.weight);
-        edge.css("target-arrow-shape", "triangle");
-        edge.css("target-arrow-color", "#005");
-        edge.css("line-color", "#a00");
+        // edge.css("target-arrow-shape", "triangle");
       });
     };
     var cy = cytoscape({
@@ -63,6 +61,7 @@ var CytLayout = (function () {
       var data = tgt.json().data;
       var id = data["id"];
       var m = "";
+      m += "ノードの右クリックイベント";
       m += "{id:" + id + ", x:" + tgt.position("x") + ", y:" + tgt.position("y") + "}";
       alert(m);
     });
@@ -75,5 +74,14 @@ var CytLayout = (function () {
       cy.add(eval($("#IdElements").val()));
       setStyles(cy.nodes(), cy.edges());
       CytLayout.setLeyout(cy, $("#IdLayout").val());
+    });
+    $("#IdBtnSave").click(function () {
+      var s = "";
+      var nodes = cy.nodes();
+      nodes.forEach(function (node) {
+        s += JSON.stringify(node.json());
+        s += "\n";
+      });
+      $("#IdElementsPosition").val(s);
     });
   });
