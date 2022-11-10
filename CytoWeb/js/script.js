@@ -17,6 +17,8 @@ var CytLayout = (function () {
       // ノードのスタイル
       nodes.forEach(function (node) {
         var data = node.json().data;
+        var node_color = data.color;
+        if(node_color == undefined) node_color = "#ccc";
           // ラベルの幅と高さのサイズにします。
           node.css("width", "label");
           node.css("height", "label");
@@ -27,13 +29,13 @@ var CytLayout = (function () {
           node.css("text-halign", "center");
           node.css("text-wrap", "wrap");
           if(data.group == 1){
-            //主語の場合のノード描画
+            //Group1のノード描画
             node.css("shape", "ellipse");
-            node.css("background-color", "#ffd803");
+            node.css("background-color", node_color);
           }else if(data.group == 2){
-            //主語以外のノード描画
+            //Group2のノード描画
             node.css("shape", "round-rectangle");
-            node.css("background-color", "#e3f6f5");
+            node.css("background-color", node_color);
           }
       });
       // エッヂのスタイル
