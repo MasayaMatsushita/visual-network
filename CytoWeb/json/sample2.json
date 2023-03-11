@@ -1,0 +1,135 @@
+{
+  "directed": true,
+  "multigraph": true,
+  "graph": {
+      "graph": {},
+      "node": {
+          "color": "black",
+          "fillcolor": "",
+          "fixedsize": "",
+          "height": "",
+          "shape": "circle",
+          "style": "",
+          "width": ""
+      },
+      "edge": {
+          "label": ""
+      }
+  },
+  "nodes": [
+      {
+          "fillcolor": "#ffdbed",
+          "fixedsize": "true",
+          "height": "1.2",
+          "style": "filled",
+          "width": "1.2",
+          "id": "学習者A"
+      },
+      {
+          "fillcolor": "#ffdbed",
+          "fixedsize": "true",
+          "height": "1.2",
+          "style": "filled",
+          "width": "1.2",
+          "id": "学習者B"
+      },
+      {
+          "fillcolor": "#ffdbed",
+          "fixedsize": "true",
+          "height": "1.2",
+          "style": "filled",
+          "width": "1.2",
+          "id": "学習者C"
+      },
+      {
+          "fillcolor": "#ffdbed",
+          "fixedsize": "true",
+          "height": "1.2",
+          "style": "filled",
+          "width": "1.2",
+          "id": "学習者D"
+      },
+      {
+          "fillcolor": "#ffeddb",
+          "fixedsize": "true",
+          "height": "1.2",
+          "style": "filled",
+          "width": "1.2",
+          "id": "学習者E"
+      },
+      {
+          "fillcolor": "#ffdbed",
+          "fixedsize": "true",
+          "height": "1.2",
+          "style": "filled",
+          "width": "1.2",
+          "id": "学習者F"
+      },
+      {
+          "fillcolor": "#ffeddb",
+          "fixedsize": "true",
+          "height": "1.2",
+          "style": "filled",
+          "width": "1.2",
+          "id": "学習者G"
+      },
+      {
+          "fillcolor": "#ffeddb",
+          "fixedsize": "true",
+          "height": "1.2",
+          "style": "filled",
+          "width": "1.2",
+          "id": "学習者H"
+      }
+  ],
+  "links": [
+      {
+          "label": "00:10",
+          "source": "学習者A",
+          "target": "学習者B",
+          "key": 0
+      },
+      {
+          "label": "00:26",
+          "source": "学習者A",
+          "target": "学習者C",
+          "key": 0
+      },
+      {
+          "label": "01:05",
+          "source": "学習者B",
+          "target": "学習者D",
+          "key": 0
+      },
+      {
+          "label": "01:27",
+          "source": "学習者C",
+          "target": "学習者E",
+          "key": 0
+      },
+      {
+          "label": "01:33",
+          "source": "学習者C",
+          "target": "学習者G",
+          "key": 0
+      },
+      {
+          "label": "01:48",
+          "source": "学習者D",
+          "target": "学習者G",
+          "key": 0
+      },
+      {
+          "label": "01:57",
+          "source": "学習者F",
+          "target": "学習者E",
+          "key": 0
+      },
+      {
+          "label": "02:11",
+          "source": "学習者F",
+          "target": "学習者H",
+          "key": 0
+      }
+  ]
+}
