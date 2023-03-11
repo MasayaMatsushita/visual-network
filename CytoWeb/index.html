@@ -37,653 +37,711 @@
     <script src="./js/cytoscape-cola.js"></script>
 
     <script src="./js/script.js"></script>
+
+    <script>
+        const output_svg = document.getElementById('color_list');
+
+        function csv_data(dataPath) {
+            const request = new XMLHttpRequest(); // HTTPでファイルを読み込む
+            request.addEventListener('load', (event) => { // ロードさせ実行
+                const response = event.target.responseText; // 受け取ったテキストを返す
+                output_svg.innerHTML = response; // 表示
+            });
+            request.open('GET', dataPath, true); // csvのパスを指定
+            request.send();
+        }
+        csv_data('centrality.csv'); // csvのパス
+    </script>
 </head>
 
 <body>
-<h1>ネットワーク可視化</h1>
-<table border="1">
-    <tr>
-        <td>
-            <label for="IdLayout">Layout:</label>
-            <select name="NmLayout" id="IdLayout">
-                <option value="grid" selected>grid</option>
-                <option value="circle">circle</option>
-                <option value="concentric">concentric</option>
-                <option value="dagre">dagre</option>
-                <option value="breadthfirst">breadthfirst</option>
-                <option value="fcose">fcose</option>
-                <option value="cola">cola</option>
-                <option value="random">random</option>
-            </select>
-        </td>
-        <td>
-            <button id="IdBtnRead">読込</button>
-            <textarea name="NmElements" id="IdElements" cols="30" rows="5">
-                [
-    {
-        "group": "nodes",
-        "data": {
-            "id": "s19",
-            "name": "s19",
-            "group": 1
-        }
-    },
-    {
-        "group": "nodes",
-        "data": {
-            "id": "s20",
-            "name": "s20",
-            "group": 1
-        }
-    },
-    {
-        "group": "nodes",
-        "data": {
-            "id": "s13",
-            "name": "s13",
-            "group": 1
-        }
-    },
-    {
-        "group": "nodes",
-        "data": {
-            "id": "s30",
-            "name": "s30",
-            "group": 1
-        }
-    },
-    {
-        "group": "nodes",
-        "data": {
-            "id": "s22",
-            "name": "s22",
-            "group": 1
-        }
-    },
-    {
-        "group": "nodes",
-        "data": {
-            "id": "s9",
-            "name": "s9",
-            "group": 1
-        }
-    },
-    {
-        "group": "nodes",
-        "data": {
-            "id": "s7",
-            "name": "s7",
-            "group": 1
-        }
-    },
-    {
-        "group": "nodes",
-        "data": {
-            "id": "s27",
-            "name": "s27",
-            "group": 1
-        }
-    },
-    {
-        "group": "nodes",
-        "data": {
-            "id": "s26",
-            "name": "s26",
-            "group": 1
-        }
-    },
-    {
-        "group": "nodes",
-        "data": {
-            "id": "s18",
-            "name": "s18",
-            "group": 1
-        }
-    },
-    {
-        "group": "nodes",
-        "data": {
-            "id": "s2",
-            "name": "s2",
-            "group": 1
-        }
-    },
-    {
-        "group": "nodes",
-        "data": {
-            "id": "s24",
-            "name": "s24",
-            "group": 1
-        }
-    },
-    {
-        "group": "nodes",
-        "data": {
-            "id": "s3",
-            "name": "s3",
-            "group": 1
-        }
-    },
-    {
-        "group": "nodes",
-        "data": {
-            "id": "s5",
-            "name": "s5",
-            "group": 1
-        }
-    },
-    {
-        "group": "nodes",
-        "data": {
-            "id": "s31",
-            "name": "s31",
-            "group": 1
-        }
-    },
-    {
-        "group": "nodes",
-        "data": {
-            "id": "s28",
-            "name": "s28",
-            "group": 1
-        }
-    },
-    {
-        "group": "nodes",
-        "data": {
-            "id": "s1",
-            "name": "s1",
-            "group": 1
-        }
-    },
-    {
-        "group": "nodes",
-        "data": {
-            "id": "s10",
-            "name": "s10",
-            "group": 1
-        }
-    },
-    {
-        "group": "nodes",
-        "data": {
-            "id": "s25",
-            "name": "s25",
-            "group": 1
-        }
-    },
-    {
-        "group": "nodes",
-        "data": {
-            "id": "s17",
-            "name": "s17",
-            "group": 1
-        }
-    },
-    {
-        "group": "nodes",
-        "data": {
-            "id": "s4",
-            "name": "s4",
-            "group": 1
-        }
-    },
-    {
-        "group": "nodes",
-        "data": {
-            "id": "s15",
-            "name": "s15",
-            "group": 1
-        }
-    },
-    {
-        "group": "nodes",
-        "data": {
-            "id": "s21",
-            "name": "s21",
-            "group": 1
-        }
-    },
-    {
-        "group": "nodes",
-        "data": {
-            "id": "s16",
-            "name": "s16",
-            "group": 1
-        }
-    },
-    {
-        "group": "nodes",
-        "data": {
-            "id": "s14",
-            "name": "s14",
-            "group": 1
-        }
-    },
-    {
-        "group": "nodes",
-        "data": {
-            "id": "s11",
-            "name": "s11",
-            "group": 1
-        }
-    },
-    {
-        "group": "nodes",
-        "data": {
-            "id": "s29",
-            "name": "s29",
-            "group": 1
-        }
-    },
-    {
-        "group": "nodes",
-        "data": {
-            "id": "s12",
-            "name": "s12",
-            "group": 1
-        }
-    },
-    {
-        "group": "edges",
-        "data": {
-            "id": "e1",
-            "name": "",
-            "source": "s19",
-            "target": "s20",
-            "weight": 2
-        }
-    },
-    {
-        "group": "edges",
-        "data": {
-            "id": "e2",
-            "name": "",
-            "source": "s19",
-            "target": "s13",
-            "weight": 2
-        }
-    },
-    {
-        "group": "edges",
-        "data": {
-            "id": "e3",
-            "name": "",
-            "source": "s19",
-            "target": "s30",
-            "weight": 2
-        }
-    },
-    {
-        "group": "edges",
-        "data": {
-            "id": "e4",
-            "name": "",
-            "source": "s20",
-            "target": "s22",
-            "weight": 2
-        }
-    },
-    {
-        "group": "edges",
-        "data": {
-            "id": "e5",
-            "name": "",
-            "source": "s9",
-            "target": "s7",
-            "weight": 2
-        }
-    },
-    {
-        "group": "edges",
-        "data": {
-            "id": "e6",
-            "name": "",
-            "source": "s19",
-            "target": "s27",
-            "weight": 2
-        }
-    },
-    {
-        "group": "edges",
-        "data": {
-            "id": "e7",
-            "name": "",
-            "source": "s26",
-            "target": "s18",
-            "weight": 2
-        }
-    },
-    {
-        "group": "edges",
-        "data": {
-            "id": "e8",
-            "name": "",
-            "source": "s30",
-            "target": "s2",
-            "weight": 2
-        }
-    },
-    {
-        "group": "edges",
-        "data": {
-            "id": "e9",
-            "name": "",
-            "source": "s24",
-            "target": "s3",
-            "weight": 2
-        }
-    },
-    {
-        "group": "edges",
-        "data": {
-            "id": "e10",
-            "name": "",
-            "source": "s18",
-            "target": "s26",
-            "weight": 2
-        }
-    },
-    {
-        "group": "edges",
-        "data": {
-            "id": "e11",
-            "name": "",
-            "source": "s5",
-            "target": "s31",
-            "weight": 2
-        }
-    },
-    {
-        "group": "edges",
-        "data": {
-            "id": "e12",
-            "name": "",
-            "source": "s28",
-            "target": "s1",
-            "weight": 2
-        }
-    },
-    {
-        "group": "edges",
-        "data": {
-            "id": "e13",
-            "name": "",
-            "source": "s3",
-            "target": "s10",
-            "weight": 2
-        }
-    },
-    {
-        "group": "edges",
-        "data": {
-            "id": "e14",
-            "name": "",
-            "source": "s13",
-            "target": "s1",
-            "weight": 2
-        }
-    },
-    {
-        "group": "edges",
-        "data": {
-            "id": "e15",
-            "name": "",
-            "source": "s19",
-            "target": "s25",
-            "weight": 2
-        }
-    },
-    {
-        "group": "edges",
-        "data": {
-            "id": "e16",
-            "name": "",
-            "source": "s17",
-            "target": "s10",
-            "weight": 2
-        }
-    },
-    {
-        "group": "edges",
-        "data": {
-            "id": "e17",
-            "name": "",
-            "source": "s30",
-            "target": "s4",
-            "weight": 2
-        }
-    },
-    {
-        "group": "edges",
-        "data": {
-            "id": "e18",
-            "name": "",
-            "source": "s10",
-            "target": "s3",
-            "weight": 2
-        }
-    },
-    {
-        "group": "edges",
-        "data": {
-            "id": "e19",
-            "name": "",
-            "source": "s15",
-            "target": "s21",
-            "weight": 2
-        }
-    },
-    {
-        "group": "edges",
-        "data": {
-            "id": "e20",
-            "name": "",
-            "source": "s10",
-            "target": "s17",
-            "weight": 2
-        }
-    },
-    {
-        "group": "edges",
-        "data": {
-            "id": "e21",
-            "name": "",
-            "source": "s19",
-            "target": "s16",
-            "weight": 2
-        }
-    },
-    {
-        "group": "edges",
-        "data": {
-            "id": "e22",
-            "name": "",
-            "source": "s26",
-            "target": "s14",
-            "weight": 2
-        }
-    },
-    {
-        "group": "edges",
-        "data": {
-            "id": "e23",
-            "name": "",
-            "source": "s24",
-            "target": "s11",
-            "weight": 2
-        }
-    },
-    {
-        "group": "edges",
-        "data": {
-            "id": "e24",
-            "name": "",
-            "source": "s4",
-            "target": "s29",
-            "weight": 2
-        }
-    },
-    {
-        "group": "edges",
-        "data": {
-            "id": "e25",
-            "name": "",
-            "source": "s29",
-            "target": "s4",
-            "weight": 2
-        }
-    },
-    {
-        "group": "edges",
-        "data": {
-            "id": "e26",
-            "name": "",
-            "source": "s5",
-            "target": "s7",
-            "weight": 2
-        }
-    },
-    {
-        "group": "edges",
-        "data": {
-            "id": "e27",
-            "name": "",
-            "source": "s12",
-            "target": "s25",
-            "weight": 2
-        }
-    },
-    {
-        "group": "edges",
-        "data": {
-            "id": "e28",
-            "name": "",
-            "source": "s27",
-            "target": "s14",
-            "weight": 2
-        }
-    },
-    {
-        "group": "edges",
-        "data": {
-            "id": "e29",
-            "name": "",
-            "source": "s7",
-            "target": "s5",
-            "weight": 2
-        }
-    },
-    {
-        "group": "edges",
-        "data": {
-            "id": "e30",
-            "name": "",
-            "source": "s25",
-            "target": "s12",
-            "weight": 2
-        }
-    },
-    {
-        "group": "edges",
-        "data": {
-            "id": "e31",
-            "name": "",
-            "source": "s19",
-            "target": "s5",
-            "weight": 2
-        }
-    },
-    {
-        "group": "edges",
-        "data": {
-            "id": "e32",
-            "name": "",
-            "source": "s20",
-            "target": "s10",
-            "weight": 2
-        }
-    },
-    {
-        "group": "edges",
-        "data": {
-            "id": "e33",
-            "name": "",
-            "source": "s5",
-            "target": "s22",
-            "weight": 2
-        }
-    },
-    {
-        "group": "edges",
-        "data": {
-            "id": "e34",
-            "name": "",
-            "source": "s7",
-            "target": "s22",
-            "weight": 2
-        }
-    },
-    {
-        "group": "edges",
-        "data": {
-            "id": "e35",
-            "name": "",
-            "source": "s10",
-            "target": "s20",
-            "weight": 2
-        }
-    },
-    {
-        "group": "edges",
-        "data": {
-            "id": "e36",
-            "name": "",
-            "source": "s22",
-            "target": "s5",
-            "weight": 2
-        }
-    },
-    {
-        "group": "edges",
-        "data": {
-            "id": "e37",
-            "name": "",
-            "source": "s22",
-            "target": "s7",
-            "weight": 2
-        }
-    },
-    {
-        "group": "edges",
-        "data": {
-            "id": "e38",
-            "name": "",
-            "source": "s9",
-            "target": "s13",
-            "weight": 2
-        }
-    },
-    {
-        "group": "edges",
-        "data": {
-            "id": "e39",
-            "name": "",
-            "source": "s13",
-            "target": "s9",
-            "weight": 2
-        }
-    }
-]
-            </textarea>
-        </td>
-    </tr>
-    <tr>
-        <td colspan="3">
-            <div id="IdCytoscape"></div>
-        </td>
-    </tr>
-</table>
+    <h1>ネットワーク可視化</h1>
+    <div>
+        <table border="1">
+            <tr>
+                <td>
+                    <label for="IdLayout">Layout:</label>
+                    <select name="NmLayout" id="IdLayout">
+                        <option value="fcose" selected>fcose</option>
+                        <option value="grid">grid</option>
+                        <option value="random">random</option>
+                        <option value="circle">circle</option>
+                        <option value="concentric">concentric</option>
+                        <option value="breadthfirst">breadthfirst</option>
+                        <option value="cose">cose</option>
+                        <option value="dagre">dagre</option>
+                        <option value="cola">cola</option>
+                    </select>
+                </td>
+                <td>
+                    <button id="IdBtnRead">読込</button>
+                    <textarea name="NmElements" id="IdElements" cols="30" rows="5">
+                        [
+            {
+                "group": "nodes",
+                "data": {
+                    "id": "s19",
+                    "name": "s19",
+                    "group": 1,
+                    "color": "#ccc"
+                }
+            },
+            {
+                "group": "nodes",
+                "data": {
+                    "id": "s20",
+                    "name": "s20",
+                    "group": 1
+                }
+            },
+            {
+                "group": "nodes",
+                "data": {
+                    "id": "s13",
+                    "name": "s13",
+                    "group": 1
+                }
+            },
+            {
+                "group": "nodes",
+                "data": {
+                    "id": "s30",
+                    "name": "s30",
+                    "group": 1
+                }
+            },
+            {
+                "group": "nodes",
+                "data": {
+                    "id": "s22",
+                    "name": "s22",
+                    "group": 1
+                }
+            },
+            {
+                "group": "nodes",
+                "data": {
+                    "id": "s9",
+                    "name": "s9",
+                    "group": 1
+                }
+            },
+            {
+                "group": "nodes",
+                "data": {
+                    "id": "s7",
+                    "name": "s7",
+                    "group": 1
+                }
+            },
+            {
+                "group": "nodes",
+                "data": {
+                    "id": "s27",
+                    "name": "s27",
+                    "group": 1
+                }
+            },
+            {
+                "group": "nodes",
+                "data": {
+                    "id": "s26",
+                    "name": "s26",
+                    "group": 1
+                }
+            },
+            {
+                "group": "nodes",
+                "data": {
+                    "id": "s18",
+                    "name": "s18",
+                    "group": 1
+                }
+            },
+            {
+                "group": "nodes",
+                "data": {
+                    "id": "s2",
+                    "name": "s2",
+                    "group": 1
+                }
+            },
+            {
+                "group": "nodes",
+                "data": {
+                    "id": "s24",
+                    "name": "s24",
+                    "group": 1
+                }
+            },
+            {
+                "group": "nodes",
+                "data": {
+                    "id": "s3",
+                    "name": "s3",
+                    "group": 1
+                }
+            },
+            {
+                "group": "nodes",
+                "data": {
+                    "id": "s5",
+                    "name": "s5",
+                    "group": 1
+                }
+            },
+            {
+                "group": "nodes",
+                "data": {
+                    "id": "s31",
+                    "name": "s31",
+                    "group": 1
+                }
+            },
+            {
+                "group": "nodes",
+                "data": {
+                    "id": "s28",
+                    "name": "s28",
+                    "group": 1
+                }
+            },
+            {
+                "group": "nodes",
+                "data": {
+                    "id": "s1",
+                    "name": "s1",
+                    "group": 1
+                }
+            },
+            {
+                "group": "nodes",
+                "data": {
+                    "id": "s10",
+                    "name": "s10",
+                    "group": 1
+                }
+            },
+            {
+                "group": "nodes",
+                "data": {
+                    "id": "s25",
+                    "name": "s25",
+                    "group": 1
+                }
+            },
+            {
+                "group": "nodes",
+                "data": {
+                    "id": "s17",
+                    "name": "s17",
+                    "group": 1
+                }
+            },
+            {
+                "group": "nodes",
+                "data": {
+                    "id": "s4",
+                    "name": "s4",
+                    "group": 1
+                }
+            },
+            {
+                "group": "nodes",
+                "data": {
+                    "id": "s15",
+                    "name": "s15",
+                    "group": 1
+                }
+            },
+            {
+                "group": "nodes",
+                "data": {
+                    "id": "s21",
+                    "name": "s21",
+                    "group": 1
+                }
+            },
+            {
+                "group": "nodes",
+                "data": {
+                    "id": "s16",
+                    "name": "s16",
+                    "group": 1
+                }
+            },
+            {
+                "group": "nodes",
+                "data": {
+                    "id": "s14",
+                    "name": "s14",
+                    "group": 1
+                }
+            },
+            {
+                "group": "nodes",
+                "data": {
+                    "id": "s11",
+                    "name": "s11",
+                    "group": 1
+                }
+            },
+            {
+                "group": "nodes",
+                "data": {
+                    "id": "s29",
+                    "name": "s29",
+                    "group": 1
+                }
+            },
+            {
+                "group": "nodes",
+                "data": {
+                    "id": "s12",
+                    "name": "s12",
+                    "group": 1
+                }
+            },
+            {
+                "group": "edges",
+                "data": {
+                    "id": "e1",
+                    "name": "",
+                    "source": "s19",
+                    "target": "s20",
+                    "weight": 2
+                }
+            },
+            {
+                "group": "edges",
+                "data": {
+                    "id": "e2",
+                    "name": "",
+                    "source": "s19",
+                    "target": "s13",
+                    "weight": 2
+                }
+            },
+            {
+                "group": "edges",
+                "data": {
+                    "id": "e3",
+                    "name": "",
+                    "source": "s19",
+                    "target": "s30",
+                    "weight": 2
+                }
+            },
+            {
+                "group": "edges",
+                "data": {
+                    "id": "e4",
+                    "name": "",
+                    "source": "s20",
+                    "target": "s22",
+                    "weight": 2
+                }
+            },
+            {
+                "group": "edges",
+                "data": {
+                    "id": "e5",
+                    "name": "",
+                    "source": "s9",
+                    "target": "s7",
+                    "weight": 2
+                }
+            },
+            {
+                "group": "edges",
+                "data": {
+                    "id": "e6",
+                    "name": "",
+                    "source": "s19",
+                    "target": "s27",
+                    "weight": 2
+                }
+            },
+            {
+                "group": "edges",
+                "data": {
+                    "id": "e7",
+                    "name": "",
+                    "source": "s26",
+                    "target": "s18",
+                    "weight": 2
+                }
+            },
+            {
+                "group": "edges",
+                "data": {
+                    "id": "e8",
+                    "name": "",
+                    "source": "s30",
+                    "target": "s2",
+                    "weight": 2
+                }
+            },
+            {
+                "group": "edges",
+                "data": {
+                    "id": "e9",
+                    "name": "",
+                    "source": "s24",
+                    "target": "s3",
+                    "weight": 2
+                }
+            },
+            {
+                "group": "edges",
+                "data": {
+                    "id": "e10",
+                    "name": "",
+                    "source": "s18",
+                    "target": "s26",
+                    "weight": 2
+                }
+            },
+            {
+                "group": "edges",
+                "data": {
+                    "id": "e11",
+                    "name": "",
+                    "source": "s5",
+                    "target": "s31",
+                    "weight": 2
+                }
+            },
+            {
+                "group": "edges",
+                "data": {
+                    "id": "e12",
+                    "name": "",
+                    "source": "s28",
+                    "target": "s1",
+                    "weight": 2
+                }
+            },
+            {
+                "group": "edges",
+                "data": {
+                    "id": "e13",
+                    "name": "",
+                    "source": "s3",
+                    "target": "s10",
+                    "weight": 2
+                }
+            },
+            {
+                "group": "edges",
+                "data": {
+                    "id": "e14",
+                    "name": "",
+                    "source": "s13",
+                    "target": "s1",
+                    "weight": 2
+                }
+            },
+            {
+                "group": "edges",
+                "data": {
+                    "id": "e15",
+                    "name": "",
+                    "source": "s19",
+                    "target": "s25",
+                    "weight": 2
+                }
+            },
+            {
+                "group": "edges",
+                "data": {
+                    "id": "e16",
+                    "name": "",
+                    "source": "s17",
+                    "target": "s10",
+                    "weight": 2
+                }
+            },
+            {
+                "group": "edges",
+                "data": {
+                    "id": "e17",
+                    "name": "",
+                    "source": "s30",
+                    "target": "s4",
+                    "weight": 2
+                }
+            },
+            {
+                "group": "edges",
+                "data": {
+                    "id": "e18",
+                    "name": "",
+                    "source": "s10",
+                    "target": "s3",
+                    "weight": 2
+                }
+            },
+            {
+                "group": "edges",
+                "data": {
+                    "id": "e19",
+                    "name": "",
+                    "source": "s15",
+                    "target": "s21",
+                    "weight": 2
+                }
+            },
+            {
+                "group": "edges",
+                "data": {
+                    "id": "e20",
+                    "name": "",
+                    "source": "s10",
+                    "target": "s17",
+                    "weight": 2
+                }
+            },
+            {
+                "group": "edges",
+                "data": {
+                    "id": "e21",
+                    "name": "",
+                    "source": "s19",
+                    "target": "s16",
+                    "weight": 2
+                }
+            },
+            {
+                "group": "edges",
+                "data": {
+                    "id": "e22",
+                    "name": "",
+                    "source": "s26",
+                    "target": "s14",
+                    "weight": 2
+                }
+            },
+            {
+                "group": "edges",
+                "data": {
+                    "id": "e23",
+                    "name": "",
+                    "source": "s24",
+                    "target": "s11",
+                    "weight": 2
+                }
+            },
+            {
+                "group": "edges",
+                "data": {
+                    "id": "e24",
+                    "name": "",
+                    "source": "s4",
+                    "target": "s29",
+                    "weight": 2
+                }
+            },
+            {
+                "group": "edges",
+                "data": {
+                    "id": "e25",
+                    "name": "",
+                    "source": "s29",
+                    "target": "s4",
+                    "weight": 2
+                }
+            },
+            {
+                "group": "edges",
+                "data": {
+                    "id": "e26",
+                    "name": "",
+                    "source": "s5",
+                    "target": "s7",
+                    "weight": 2
+                }
+            },
+            {
+                "group": "edges",
+                "data": {
+                    "id": "e27",
+                    "name": "",
+                    "source": "s12",
+                    "target": "s25",
+                    "weight": 2
+                }
+            },
+            {
+                "group": "edges",
+                "data": {
+                    "id": "e28",
+                    "name": "",
+                    "source": "s27",
+                    "target": "s14",
+                    "weight": 2
+                }
+            },
+            {
+                "group": "edges",
+                "data": {
+                    "id": "e29",
+                    "name": "",
+                    "source": "s7",
+                    "target": "s5",
+                    "weight": 2
+                }
+            },
+            {
+                "group": "edges",
+                "data": {
+                    "id": "e30",
+                    "name": "",
+                    "source": "s25",
+                    "target": "s12",
+                    "weight": 2
+                }
+            },
+            {
+                "group": "edges",
+                "data": {
+                    "id": "e31",
+                    "name": "",
+                    "source": "s19",
+                    "target": "s5",
+                    "weight": 2
+                }
+            },
+            {
+                "group": "edges",
+                "data": {
+                    "id": "e32",
+                    "name": "",
+                    "source": "s20",
+                    "target": "s10",
+                    "weight": 2
+                }
+            },
+            {
+                "group": "edges",
+                "data": {
+                    "id": "e33",
+                    "name": "",
+                    "source": "s5",
+                    "target": "s22",
+                    "weight": 2
+                }
+            },
+            {
+                "group": "edges",
+                "data": {
+                    "id": "e34",
+                    "name": "",
+                    "source": "s7",
+                    "target": "s22",
+                    "weight": 2
+                }
+            },
+            {
+                "group": "edges",
+                "data": {
+                    "id": "e35",
+                    "name": "",
+                    "source": "s10",
+                    "target": "s20",
+                    "weight": 2
+                }
+            },
+            {
+                "group": "edges",
+                "data": {
+                    "id": "e36",
+                    "name": "",
+                    "source": "s22",
+                    "target": "s5",
+                    "weight": 2
+                }
+            },
+            {
+                "group": "edges",
+                "data": {
+                    "id": "e37",
+                    "name": "",
+                    "source": "s22",
+                    "target": "s7",
+                    "weight": 2
+                }
+            },
+            {
+                "group": "edges",
+                "data": {
+                    "id": "e38",
+                    "name": "",
+                    "source": "s9",
+                    "target": "s13",
+                    "weight": 2
+                }
+            },
+            {
+                "group": "edges",
+                "data": {
+                    "id": "e39",
+                    "name": "",
+                    "source": "s13",
+                    "target": "s9",
+                    "weight": 2
+                }
+            }
+        ]
+                    </textarea>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div style=" margin-left:72%; font-size: 16px; ">
+        <table class="table">
+            <tr>
+                <th>児童生徒</th>
+                <th>次数中心性</th>
+                <th>媒介中心性</th>
+                <th>固有ベクトル中心性</th>
+            </tr>
+            <tr><td>s1</td>	<td>0.067</td>	<td>0.051</td>	<td>0.087</td></tr>
+            <tr><td>s2</td>	<td>0.033</td>	<td>0</td>	<td>0.068</td></tr>
+            <tr><td>s3</td>	<td>0.067</td>	<td>0.097</td>	<td>0.043</td></tr>
+            <tr><td>s4</td>	<td>0.067</td>	<td>0.051</td>	<td>0.075</td></tr>
+            <tr><td>s5</td>	<td>0.133</td>	<td>0.087</td>	<td>0.391</td></tr>
+            <tr><td>s6</td>	<td>0</td>	<td>0</td>	<td>0</td></tr>
+            <tr><td>s7</td>	<td>0.1</td>	<td>0.016</td>	<td>0.272</td></tr>
+            <tr><td>s8</td>	<td>0</td>	<td>0</td>	<td>0</td></tr>
+            <tr><td>s9</td>	<td>0.067</td>	<td>0.009</td>	<td>0.164</td></tr>
+            <tr><td>s10</td>	<td>0.1</td>	<td>0.182</td>	<td>0.122</td></tr>
+            <tr><td>s11</td>	<td>0.033</td>	<td>0</td>	<td>0.005</td></tr>
+            <tr><td>s12</td>	<td>0.033</td>	<td>0</td>	<td>0.06</td></tr>
+            <tr><td>s13</td>	<td>0.1</td>	<td>0.126</td>	<td>0.25</td></tr>
+            <tr><td>s14</td>	<td>0.033</td>	<td>0</td>	<td>0.06</td></tr>
+            <tr><td>s15</td>	<td>0.033</td>	<td>0</td>	<td>0</td></tr>
+            <tr><td>s16</td>	<td>0.033</td>	<td>0</td>	<td>0.17</td></tr>
+            <tr><td>s17</td>	<td>0.033</td>	<td>0</td>	<td>0.039</td></tr>
+            <tr><td>s18</td>	<td>0.033</td>	<td>0</td>	<td>0</td></tr>
+            <tr><td>s19</td>	<td>0.233</td>	<td>0.434</td>	<td>0.539</td></tr>
+            <tr><td>s20</td>	<td>0.1</td>	<td>0.221</td>	<td>0.305</td></tr>
+            <tr><td>s21</td>	<td>0.033</td>	<td>0</td>	<td>0</td></tr>
+            <tr><td>s22</td>	<td>0.1</td>	<td>0.034</td>	<td>0.305</td></tr>
+            <tr><td>s23</td>	<td>0</td>	<td>0</td>	<td>0</td></tr>
+            <tr><td>s24</td>	<td>0.067</td>	<td>0.051</td>	<td>0.015</td></tr>
+            <tr><td>s25</td>	<td>0.067</td>	<td>0.051</td>	<td>0.189</td></tr>
+            <tr><td>s26</td>	<td>0.033</td>	<td>0</td>	<td>0</td></tr>
+            <tr><td>s27</td>	<td>0.067</td>	<td>0.051</td>	<td>0.189</td></tr>
+            <tr><td>s28</td>	<td>0.033</td>	<td>0</td>	<td>0.028</td></tr>
+            <tr><td>s29</td>	<td>0.033</td>	<td>0</td>	<td>0.024</td></tr>
+            <tr><td>s30</td>	<td>0.1</td>	<td>0.143</td>	<td>0.215</td></tr>
+            <tr><td>s31</td>	<td>0.033</td>	<td>0</td>	<td>0.123</td></tr>
+
+
+        </table>
+        <div id="IdCytoscape" style="margin-top: 30px;width: 70%;"></div>
+    </div>
 
 </body>
 
